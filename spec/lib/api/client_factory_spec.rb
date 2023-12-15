@@ -18,7 +18,7 @@ describe Api::ClientFactory do
 
       it 'calls fake client' do
         call
-        expect(Api::FakeClient).to have_received(:new)
+        expect(Api::FakeClient).to have_received(:new).with(logger: OpenStruct.new, tracker: OpenStruct.new)
       end
 
       it 'doesnt call client' do
@@ -37,7 +37,7 @@ describe Api::ClientFactory do
 
       it 'calls client' do
         call
-        expect(Api::Client).to have_received(:new)
+        expect(Api::Client).to have_received(:new).with(logger: OpenStruct.new, tracker: OpenStruct.new)
       end
     end
   end
