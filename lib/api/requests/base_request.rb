@@ -48,7 +48,7 @@ module Api
           request_id: request_id,
           action: path,
           request: @params,
-          response: @response.to_h.pretty_inspect
+          response: response.to_h.pretty_inspect
         )
       end
 
