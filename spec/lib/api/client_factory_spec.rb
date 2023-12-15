@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Api::ClientFactory do
-  describe '#call' do
+  describe '.call' do
     subject(:call) { described_class.call(logger: OpenStruct.new, tracker: OpenStruct.new) }
 
     before do
