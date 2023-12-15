@@ -2,20 +2,22 @@
 
 module Api
   class ClientFactory
-    def self.call(**attributes)
-      klass.new(attributes)
-    end
+    class << self
+      def call(**attributes)
+        klass.new(attributes)
+      end
 
-    private
+      private
 
-    def klass
-      return Api::FakeClient if fake_api?
+      def klass
+        return Api::FakeClient if fake_api?
 
-      Api::Client
-    end
+        Api::Client
+      end
 
-    def fake_api?
-      ENV['API_FAKE'].eql? 1
+      def fake_api?
+        ENV['API_FAKE'].eql? 1
+      end
     end
   end
 end

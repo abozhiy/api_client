@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api
+module Api
   class Client < BaseClient
     def get_auth_token
       get_auth_token_request

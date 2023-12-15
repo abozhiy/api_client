@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api
+module Api
   class FakeClient < BaseClient
     def get_auth_token
       FakeResponse::TOKEN_RESPONSE

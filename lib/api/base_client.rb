@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api
+module Api
   class BaseClient
     def initialize(logger:, tracker: nil)
       @logger = logger
