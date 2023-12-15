@@ -3,6 +3,8 @@
 module Api
   module Requests
     class BaseRequest
+      include Loggerable
+
       GET_TOKEN = 'getToken'
       AUTH_CACHE_KEY = 'api/auth_token'
       API_URL = ENV['API_URL']
@@ -24,7 +26,7 @@ module Api
       def wrap_request
         logger_start
         track_request(response: response = yield)
-        logger_end
+        logger_end(response: response)
         response
       rescue Net::HTTP::Error, StandardError => e
         logger_error(e)
@@ -74,18 +76,6 @@ module Api
         return if path.eql? GET_TOKEN
 
         Rails.cache.read(AUTH_CACHE_KEY)
-      end
-
-      def logger_start
-        @logger.info "Start #{path} call"
-      end
-
-      def logger_end
-        @logger.info "End #{path} call. Received response: #{response.inspect}"
-      end
-
-      def logger_error(e)
-        @logger.error "::Api::Client: #{e.class}: #{e}"
       end
     end
   end
