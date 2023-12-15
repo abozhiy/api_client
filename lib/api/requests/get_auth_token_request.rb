@@ -14,7 +14,7 @@ module Api
       def request
         wrap_request do
           params = @params.merge(username: API_USERNAME, password: API_PASSWORD)
-          response = http.post(url, json: params.to_json, headers: headers)
+          response = http.post(url, params.to_json, headers)
           if response.kind_of? Net::HTTPSuccess
             token = response.dig('token')
             raise Api::Requests::GetAuthTokenRequest::WrongAuthTokenLength if token && token.length != EXPECTED_LENGTH

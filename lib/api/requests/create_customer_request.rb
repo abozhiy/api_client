@@ -5,7 +5,7 @@ module Api
     class CreateCustomerRequest < BaseRequest
       def request
         wrap_request do
-          http.post(url, json: @params.to_json, headers: headers)
+          http.post(url, @params.to_json, headers)
         end
       end
 
